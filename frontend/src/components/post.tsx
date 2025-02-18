@@ -6,12 +6,14 @@ export default function Post(){
 date_created:"",
 email:"",
 username:"",
-_img:null,
+_img:{type:"", data: []},
 _number:0,
 _password:"",
 _rank:""
     })
     const [sta,setsta] = useState<Boolean>(false)
+    const blob = new Blob([new Uint8Array(data?._img?.data)])
+    const ui = URL.createObjectURL(blob)
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
@@ -101,11 +103,15 @@ _rank:""
          <li className=" w-full rounded-xl  hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/home" >Home</a></li>
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="" >Profile</a></li>
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="" >Cart</a></li>
-            <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="" >Favourites</a></li>
+           
             {data?._rank === "A" ?  <li className=" w-full bg-gray-600 rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/post" >Add new food</a></li> : null}
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" onClick={logout} ><a href="" >Logout</a></li>
 
          </ul >
+         {!data?._img?.data.length  ? <div className="w-full mx-auto rounded-xl bg-blue-500 p-[10px] ">
+            <div className="mx-auto">Dear {data?.username} add a profile photo to your account today</div>
+            <button className="bg-white p-[10px] text-black rounded-xl m-[10px]"><a href="/profile">add photo</a></button>
+         </div> : null }
          </div>
             <div className=" w-full md:w-4/5 ">
                <div className="w-full md:w-4/5 fixed top-0 p-[10px] shadow-xl bg-gray-900 flex justify-between">
@@ -116,7 +122,7 @@ _rank:""
          <li className=" w-full rounded-xl  hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/home" >Home</a></li>
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/profile" >Profile</a></li>
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/cart" >Cart</a></li>
-            <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="favour" >Favourites</a></li>
+            
             {data?._rank === "A" ?  <li className=" w-full rounded-xl bg-gray-600 hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/post" >Add new food</a></li> : null}
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" onClick={logout} ><a href="" >Logout</a></li>
 
@@ -126,7 +132,7 @@ _rank:""
 
                 <input type="text" className="bg-inherit outline-none p-[10px]" placeholder="Search Foods...." />
                 <div className="font-bold text-2xl text-blue-500">FoodCafe</div>
-                <div className=" text-gray-600 flex flex-row"><img src=""className="rounded-full w-[50px] h-[50px] border-2  mx-[10px]" /><div className="mx-[10px]  text-xl">Hi {data?.username}</div></div>
+                <div className=" text-gray-600 flex flex-row"><img src={ui} className="rounded-full w-[50px] h-[50px] border-2  mx-[10px]" /><div className="mx-[10px]  text-xl">Hi {data?.username}</div></div>
                 </div>
                 <br />
                   <br />

@@ -9,6 +9,7 @@ import "./style.css"
 
 
 import { Route,Routes,BrowserRouter } from 'react-router-dom'
+import Profile from './components/profile.tsx'
 
 
 
@@ -25,6 +26,7 @@ function App() {
        <Route path="/home" element={<Home />}></Route>
        <Route path='/post' element={<Post />} ></Route>
        <Route path="/cart" element={<Cart />} ></Route>
+       <Route path="/profile" element={<Profile />}></Route>
       </Route>
      </Routes>
      </BrowserRouter>

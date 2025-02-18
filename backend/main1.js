@@ -165,4 +165,18 @@ const upload = multer({storage:storage})
         console.log(err)
     }
  })
+ router.post("/update",upload.single("file"),async(req,res)=>{
+    try{
+      const { username } = req.body
+      const { buffer } = req.file
+      if(username && buffer){
+        await db.query("UPDATE users SET _img = ? WHERE username = ?",[buffer,username])
+        res.send({msg:"Profile updated"})
+      }else{
+        res.send({msg:"There was an error updating!"})
+      }
+    }catch(err){
+     console.log(err)
+    }
+ })
 export default router
