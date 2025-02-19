@@ -54,12 +54,12 @@ _rank:""
                <div onClick={()=>{
                   setdetails({...details,name:ma._name,price:ma._price,urll:furl,about:ma.about,date:ma.time_posted ,imgurl:blob})
                   setdisplay(true)
-               }} key={index} className="shadow-xl  m-[10px] ">
+               }} key={index} className="shadow-xl  m-[10px] w-[400px]">
                      <img width={"400px"} height={"400px"} src={furl} className="" alt="" />
-                     <div className="p-[10px] flex flex-col">
+                     <div className="p-[10px] flex flex-col  ">
                         <div>
                         <div className="font-bold text-2xl">{ma._name}</div>
-                        <div className="font-bold text-xl">$ {ma._price}</div>
+                        <div className="font-bold text-xl">${ma._price}</div>
                         <small className="m-[10px] text-gray-600">{ma.about}</small>
                         </div>
                         <div className="flex justify-between">
@@ -81,7 +81,7 @@ _rank:""
                      
                        
                        <div><img width={"600px"} height={"600px"} className="mx-auto" src={details?.urll} alt="" /></div>
-                       <div className="mx-auto p-[10px] flex flex-col justify-between" >
+                       <div className="mx-auto p-[10px] flex flex-col justify-between w-[600px]" >
                         <div>
                         <div className="font-bold text-3xl m-[10px]">{details?.name}</div>
                         <div className="font-bold text-xl m-[10px]">${details?.price}</div>

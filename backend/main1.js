@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import dotenv from "dotenv"
 import mysql from "mysql2/promise"
 import multer from "multer"
+import fs from "node:fs"
 dotenv.config()
 const router = express.Router()
 const db = await mysql.createConnection({
@@ -108,10 +109,13 @@ const auth = (req,res,next) =>{
     }
  })
 const storage = multer.memoryStorage()
-const upload = multer({storage:storage})
+const upload = multer({storage:storage , limits:{fileSize: 1024 * 1024 * 1024}})
  router.post("/post",upload.single("file"),async(req,res)=>{
       const { name , price , about } = req.body
       const { buffer } = req.file
+      
+    
+      
     try {
         const [resp] = await db.query("SELECT COUNT(*) as count FROM posts WHERE _name =?",[name])
         if(resp[0].count > 0){

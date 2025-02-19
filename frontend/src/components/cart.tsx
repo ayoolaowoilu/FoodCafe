@@ -6,7 +6,7 @@ export default function Cart(){
 date_created:"",
 email:"",
 username:"",
-_img:{type: String, data: []},
+_img:{type:"",data:[]},
 _number:0,
 _password:"",
 _rank:""
@@ -65,10 +65,12 @@ _rank:""
            date:any,
            imgurl:any
         }
+        
         const [details , setdetails] = useState<ll>()
            const list = myCart.map((ma,index)=>{
               const blob = new Blob([new Uint8Array(ma.img.data)])
-              const furl = URL.createObjectURL(blob) 
+             
+              const furl = URL.createObjectURL(blob)
               return(
                  <div onClick={()=>{
                     setdetails({...details,name:ma._name,price:ma.price,urll:furl,about:ma.about,date:ma.time_added ,imgurl:blob})
