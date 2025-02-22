@@ -23,12 +23,13 @@ function App() {
      <Routes>
       <Route path="/login" element={<Login />} ></Route>
       <Route path='/reg' element={<Reg />} ></Route>
+      <Route path="/" index element={<Gen />}></Route>
       <Route element={<Auth />}>
        <Route path="/home" element={<Home />}></Route>
        <Route path='/post' element={<Post />} ></Route>
        <Route path="/cart" element={<Cart />} ></Route>
        <Route path="/profile" element={<Profile />}></Route>
-       <Route path="/" index element={<Gen />}></Route>
+       
       </Route>
      </Routes>
      </BrowserRouter>
