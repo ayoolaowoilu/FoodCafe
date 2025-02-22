@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors"; 
-import router from "../../main1.js"; 
 import serverless from "serverless-http";
 
 const app = express();
@@ -13,6 +12,12 @@ app.use(cors({
 }));
 
 app.use(express.json());
+let router;
+const loadRouter = async () => {
+    const module = await import("../../main1.js");
+    router = module.default || module;
+};
+await loadRouter();
 app.use("/auth", router);
 
 app.get("/", (req, res) => {
