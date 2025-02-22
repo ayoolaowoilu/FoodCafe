@@ -5,6 +5,7 @@ import Login from './components/login.tsx'
 import Cart from './components/cart.tsx'
 import Post from './components/post.tsx'
 import Reg from './components/reg.tsx'
+import Gen from "./components/genpage.tsx"
 import "./style.css"
 
 
@@ -27,6 +28,7 @@ function App() {
        <Route path='/post' element={<Post />} ></Route>
        <Route path="/cart" element={<Cart />} ></Route>
        <Route path="/profile" element={<Profile />}></Route>
+       <Route path="/" element={<Gen />}></Route>
       </Route>
      </Routes>
      </BrowserRouter>
