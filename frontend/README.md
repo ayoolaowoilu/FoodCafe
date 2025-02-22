@@ -1,8 +1,3 @@
-# how to configure the frontend 
-use the "npm install" to install the necessary components
-and then use "npm install axios" then "npm install react-router-dom"
-and then you install the tailwind component and then run "npm run tailwind"
-
 
 # React + TypeScript + Vite
 
