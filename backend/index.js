@@ -1,19 +1,34 @@
-import express from "express"
-import router from "./main1.js"
-import cors from "cors"
+import express from "express";
+import cors from "cors";
+import router from "./main1.js";
 
-const app = express()
+const app = express();
+
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-frontend.vercel.app"  
+];
+
 app.use(cors({
-    origin:"http://localhost:5173",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true
-  }))
-app.use(express.json())
-app.use("/auth",router)
-app.get("/",(req,res)=>{
-    res.send("<h1>Welcome Khaleed how ya .........</h1>")
-})
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
+}));
 
-app.listen(1234,()=>{
-    console.log("Listening at port 1234")
-})
+app.use(express.json());
+
+
+app.options("*", cors()); 
+
+app.use("/auth", router);
+
+app.listen(1234, () => {
+  console.log("✅ Backend running on port 1234");
+});
