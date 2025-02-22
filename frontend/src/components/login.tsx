@@ -19,7 +19,7 @@ export default function Login(){
               const resp  = await axios.post("https://food-cafe-database.netlify.app/auth/login",profile)
               setnot(true)
               setmsg(resp.data.msg)
-              console.log(resp.data)
+              console.log(resp)
             if(resp.data.token){
                localStorage.setItem("token",resp.data.token)
             }
