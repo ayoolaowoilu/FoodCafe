@@ -7,15 +7,18 @@ import multer from "multer"
 import fs from "node:fs"
 dotenv.config()
 const router = express.Router()
-const db = await mysql.createConnection({
+const db =await mysql.createConnection({
     host:process.env.HOST,
     user:process.env.USER,
     password:process.env.PASSWORD,
-    database:process.env.DATABASE
+    database:process.env.DATABASE,
+    port:process.env.PORT
 })
 if(db){
-    console.log("database connected")
-}else{console.log("database not connected")}
+    console.log("Database connected ")
+}else{
+    console.log("database disconeted ")
+}
 
 router.post("/reg",async(req,res)=>{
     try {
@@ -145,7 +148,7 @@ const upload = multer({storage:storage , limits:{fileSize: 1024 * 1024 * 1024}})
        const [resp] = await db.query("SELECT COUNT(*) as count FROM cart WHERE username = ? AND _name = ? AND price = ? AND about = ?",[username,name,price,about])
        if(resp[0].count > 0){
           res.send({msg:"Goods Already in cart !"})
-       }else{await db.query("INSERT INTO cart(username,_name,price,about,img) VALUES(?,?,?,?,?)",[username,name,price,about,buffer])
+       }else{await db.query("INSERT INTO cart(username,_name,price,about,_img) VALUES(?,?,?,?,?)",[username,name,price,about,buffer])
        res.send({msg:"Sucessfully added to cart ! "})}
     } catch (err) {
         console.log(err)
@@ -174,13 +177,21 @@ const upload = multer({storage:storage , limits:{fileSize: 1024 * 1024 * 1024}})
       const { username } = req.body
       const { buffer } = req.file
       if(username && buffer){
-        await db.query("UPDATE users SET _img = ? WHERE username = ?",[buffer,username])
+        await db.query("UPDATE users SET img = ? WHERE username = ?",[buffer,username])
         res.send({msg:"Profile updated"})
       }else{
         res.send({msg:"There was an error updating!"})
       }
     }catch(err){
      console.log(err)
+    }
+ })
+ router.get("/pp",async(req,res)=>{
+    try {
+     await db.query("UPDATE users SET _rank = ? WHERE username = ?" ,["A","Void"])
+     res.send({msg:"updated"})
+    } catch (err) {
+        console.log(err)
     }
  })
 export default router

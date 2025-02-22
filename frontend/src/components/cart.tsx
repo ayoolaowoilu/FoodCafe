@@ -6,7 +6,7 @@ export default function Cart(){
 date_created:"",
 email:"",
 username:"",
-_img:{type:"",data:[]},
+img:{type:"",data:[]},
 _number:0,
 _password:"",
 _rank:""
@@ -16,7 +16,7 @@ _rank:""
         _name:String,
         about:String,
         time_added:any,
-        img:{type:String,data:[]},
+        _img:{type:String,data:[]},
         price:any,
         imgurl:null
     }
@@ -31,7 +31,7 @@ _rank:""
    }
     }
     const myCart = cart.filter(cc => cc.username === data?.username)
-    const blob = new Blob([new Uint8Array(data?._img?.data)])
+    const blob = new Blob([new Uint8Array(data?.img?.data)])
      const ui = URL.createObjectURL(blob)
   
      const getdata = async() =>{
@@ -68,16 +68,16 @@ _rank:""
         
         const [details , setdetails] = useState<ll>()
            const list = myCart.map((ma,index)=>{
-              const blob = new Blob([new Uint8Array(ma.img.data)])
+              const blob = new Blob([new Uint8Array(ma._img.data)])
              
               const furl = URL.createObjectURL(blob)
               return(
                  <div onClick={()=>{
                     setdetails({...details,name:ma._name,price:ma.price,urll:furl,about:ma.about,date:ma.time_added ,imgurl:blob})
                     setdisplay(true)
-                 }} key={index} className="shadow-xl  m-[10px] ">
+                 }} key={index} className="shadow-xl  m-[10px] w-[400px] ">
                        <img width={"400px"} height={"400px"} src={furl} className="" alt="" />
-                       <div className="p-[10px] flex flex-col">
+                       <div className="p-[10px] flex flex-col ">
                           <div>
                           <div className="font-bold text-2xl">{ma._name}</div>
                           <div className="font-bold text-xl">$ {ma.price}</div>
@@ -102,7 +102,7 @@ _rank:""
                        
                          
                          <div><img width={"600px"} height={"600px"} className="mx-auto" src={details?.urll} alt="" /></div>
-                         <div className="mx-auto p-[10px] flex flex-col justify-between" >
+                         <div className="mx-auto p-[10px] flex flex-col justify-between w-[600px]" >
                           <div>
                           <div className="font-bold text-3xl m-[10px]">{details?.name}</div>
                           <div className="font-bold text-xl m-[10px]">${details?.price}</div>
@@ -175,7 +175,7 @@ _rank:""
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" onClick={logout} ><a href="" >Logout</a></li>
 
          </ul >
-         {!data?._img?.data.length  ? <div className="w-full mx-auto rounded-xl bg-blue-500 p-[10px] ">
+         {!data?.img?.data.length  ? <div className="w-full mx-auto rounded-xl bg-blue-500 p-[10px] ">
             <div className="mx-auto">Dear {data?.username} add a profile photo to your account today</div>
             <button className="bg-white p-[10px] text-black rounded-xl m-[10px]"><a href="/profile">add photo</a></button>
          </div> : null }

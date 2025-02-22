@@ -6,13 +6,13 @@ export default function Post(){
 date_created:"",
 email:"",
 username:"",
-_img:{type:"", data: []},
+img:{type:"", data: []},
 _number:0,
 _password:"",
 _rank:""
     })
     const [sta,setsta] = useState<Boolean>(false)
-    const blob = new Blob([new Uint8Array(data?._img?.data)])
+    const blob = new Blob([new Uint8Array(data?.img?.data)])
     const ui = URL.createObjectURL(blob)
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
@@ -108,7 +108,7 @@ _rank:""
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" onClick={logout} ><a href="" >Logout</a></li>
 
          </ul >
-         {!data?._img?.data.length  ? <div className="w-full mx-auto rounded-xl bg-blue-500 p-[10px] ">
+         {!data?.img?.data.length  ? <div className="w-full mx-auto rounded-xl bg-blue-500 p-[10px] ">
             <div className="mx-auto">Dear {data?.username} add a profile photo to your account today</div>
             <button className="bg-white p-[10px] text-black rounded-xl m-[10px]"><a href="/profile">add photo</a></button>
          </div> : null }
