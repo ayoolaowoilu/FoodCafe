@@ -1,10 +1,23 @@
-exports.handler = async (event, context) => {
-  return {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "https://food-cafe-homeoffoods.netlify.app",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization"
-    }
-  };
-};
+import express from "express";
+import cors from "cors"; 
+import router from "../../main1.js"; 
+import serverless from "serverless-http";
+
+const app = express();
+
+app.use(cors({
+    origin: "https://food-cafe-homeoffoods.netlify.app", 
+    credentials: true,
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    allowedHeaders: "Content-Type, Authorization"
+}));
+
+app.use(express.json());
+app.use("/auth", router);
+
+app.get("/", (req, res) => {
+    res.send("<h1>Welcome Khaleed, how ya .........</h1>");
+});
+
+
+export const handler = serverless(app);
