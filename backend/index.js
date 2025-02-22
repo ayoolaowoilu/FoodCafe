@@ -4,7 +4,12 @@ import router from "./main1.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://food-cafe-homeoffoods.netlify.app", 
+    credentials: true,
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    allowedHeaders: "Content-Type, Authorization"
+  }));
 
 app.use(express.json());
 app.use("/auth", router);
