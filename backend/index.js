@@ -1,6 +1,6 @@
 import express from "express"
 import router from "./main1.js"
-import cors from "cors"
+import cors from "cros"
 
 const app = express()
 app.use(cors())
