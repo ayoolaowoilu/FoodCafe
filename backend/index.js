@@ -4,7 +4,6 @@ import router from "./main1.js";
 
 const app = express();
 
-
 app.use(cors());
 
 app.use(express.json());

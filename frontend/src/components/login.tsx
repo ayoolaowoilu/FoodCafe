@@ -16,7 +16,7 @@ export default function Login(){
            setmsg("")
             setnot(false)
            try {
-              const resp  = await axios.post("http://localhost:1234/auth/login",profile)
+              const resp  = await axios.post("https://food-cafe-database-igwfbo7xj-khaleeds-projects-02dea468.vercel.app/auth/login",profile)
               setnot(true)
               setmsg(resp.data.msg)
              localStorage.setItem("token",resp.data.token)
