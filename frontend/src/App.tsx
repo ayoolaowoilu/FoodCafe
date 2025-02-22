@@ -28,7 +28,7 @@ function App() {
        <Route path='/post' element={<Post />} ></Route>
        <Route path="/cart" element={<Cart />} ></Route>
        <Route path="/profile" element={<Profile />}></Route>
-       <Route path="/" element={<Gen />}></Route>
+       <Route path="/" index element={<Gen />}></Route>
       </Route>
      </Routes>
      </BrowserRouter>
