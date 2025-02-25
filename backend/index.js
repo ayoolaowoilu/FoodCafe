@@ -7,11 +7,23 @@ const app = express();
 app.use(cors(
     {
         origin: "https://food-cafe-homeoffoods.netlify.app", 
-        credentials: true,
-        methods: "GET, POST, PUT, DELETE, OPTIONS",
-        allowedHeaders: "Content-Type, Authorization"
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
       }
 ));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://food-cafe-homeoffoods.netlify.app");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  
+
+    if (req.method === "OPTIONS") {
+      return res.status(200).end();
+    }
+  
+    next();
+  });
 
 
 app.use(express.json());
