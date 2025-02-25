@@ -1,13 +1,13 @@
-import express, { query } from "express"
-import jwt from "jsonwebtoken"
-import bcrypt from "bcryptjs"
-import dotenv from "dotenv"
-import mysql from "mysql2/promise"
-import multer from "multer"
-import fs from "node:fs"
+import express, { query }  from "express"
+import jwt  from "jsonwebtoken"
+import bcrypt  from "bcryptjs"
+import dotenv  from "dotenv"
+import mysql  from "mysql2/promise"
+import multer  from "multer"
+import fs  from "node:fs"
 dotenv.config()
 const router = express.Router()
-const db =await mysql.createConnection({
+const db = await mysql.createConnection({
     host:process.env.HOST,
     user:process.env.USER,
     password:process.env.PASSWORD,
@@ -116,7 +116,7 @@ const upload = multer({storage:storage , limits:{fileSize: 1024 * 1024 * 1024}})
  router.post("/post",upload.single("file"),async(req,res)=>{
       const { name , price , about } = req.body
       const { buffer } = req.file
-      
+
     
       
     try {
@@ -148,7 +148,7 @@ const upload = multer({storage:storage , limits:{fileSize: 1024 * 1024 * 1024}})
        const [resp] = await db.query("SELECT COUNT(*) as count FROM cart WHERE username = ? AND _name = ? AND price = ? AND about = ?",[username,name,price,about])
        if(resp[0].count > 0){
           res.send({msg:"Goods Already in cart !"})
-       }else{await db.query("INSERT INTO cart(username,_name,price,about,_img) VALUES(?,?,?,?,?)",[username,name,price,about,buffer])
+       }else{await db.query("INSERT INTO cart(username,_name,price,about,img) VALUES(?,?,?,?,?)",[username,name,price,about,buffer])
        res.send({msg:"Sucessfully added to cart ! "})}
     } catch (err) {
         console.log(err)
@@ -188,8 +188,8 @@ const upload = multer({storage:storage , limits:{fileSize: 1024 * 1024 * 1024}})
  })
  router.get("/pp",async(req,res)=>{
     try {
-     await db.query("UPDATE users SET _rank = ? WHERE username = ?" ,["A","Void"])
-     res.send({msg:"updated"})
+     
+     res.send({msg:"Haloo ☺☺☺☺☺"})
     } catch (err) {
         console.log(err)
     }

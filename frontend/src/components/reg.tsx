@@ -20,7 +20,7 @@ export default function Reg(){
             setmsg("")
             setnot(false)
           try {
-            const resp = await axios.post("https://food-cafe-homeoffoods/auth/reg",profile)
+            const resp = await axios.post("http://localhost:1234/auth/reg",profile)
              setnot(true)
              setmsg(resp.data.msg)
           } catch (err) {

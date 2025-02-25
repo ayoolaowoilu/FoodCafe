@@ -29,7 +29,7 @@ _rank:""
         const mycart = cart.filter(cc => cc.username === data?.username)
     const getcart = async() =>{
         try {
-            const resp = await axios.get("https://food-cafe-cwmp4sxh5-khaleeds-projects-02dea468.vercel.app/auth/getcart")
+            const resp = await axios.get("http://localhost:1234/auth/getcart")
             setcart(resp.data)
         } catch (err) {
             
@@ -40,7 +40,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("https://food-cafe-cwmp4sxh5-khaleeds-projects-02dea468.vercel.app/auth/data",{
+            const resp = await axios.get("http://localhost:1234/auth/data",{
                 headers :{ authorization :`bearer ${token}`}
             })
            setdata(resp.data[0])
@@ -88,7 +88,7 @@ _rank:""
          <ul>
          <li className=" w-full rounded-xl  hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/home" >Home</a></li>
             <li className=" w-full rounded-xl bg-gray-600 hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="" >Profile</a></li>
-            <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="" >Cart</a></li>
+            <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/cart" >Cart</a></li>
             
             {data?._rank === "A" ?  <li className=" w-full  rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" ><a href="/post" >Add new food</a></li> : null}
             <li className=" w-full rounded-xl hover:bg-gray-600 p-[10px] mx-auto text-center m-[10px]" onClick={logout} ><a href="" >Logout</a></li>
@@ -157,7 +157,7 @@ _rank:""
                                 formdata.append("file",file)
                                 formdata.append("username",username)
                             }
-                            const resp  =  await axios.post("https://food-cafe-cwmp4sxh5-khaleeds-projects-02dea468.vercel.app/auth/update",formdata)
+                            const resp  =  await axios.post("http://localhost:1234/auth/update",formdata)
                             setnot(true)
                             setdis(resp.data.msg)
                             setTimeout(() => {

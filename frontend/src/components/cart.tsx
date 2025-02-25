@@ -16,7 +16,7 @@ _rank:""
         _name:String,
         about:String,
         time_added:any,
-        _img:{type:String,data:[]},
+        img:{type:String,data:[]},
         price:any,
         imgurl:null
     }
@@ -24,7 +24,7 @@ _rank:""
     const [sta,setsta] = useState<Boolean>(false)
     const getcart = async() =>{
    try {
-       const resp = await axios.get("https://food-cafe-cwmp4sxh5-khaleeds-projects-02dea468.vercel.app/auth/getcart")
+       const resp = await axios.get("http://localhost:1234/auth/getcart")
        setcart(resp.data)
    } catch (err) {
     console.log(err)
@@ -37,7 +37,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("https://food-cafe-cwmp4sxh5-khaleeds-projects-02dea468.vercel.app/auth/data",{
+            const resp = await axios.get("http://localhost:1234/auth/data",{
                 headers :{ authorization :`bearer ${token}`}
             })
            setdata(resp.data[0])
@@ -68,7 +68,7 @@ _rank:""
         
         const [details , setdetails] = useState<ll>()
            const list = myCart.map((ma,index)=>{
-              const blob = new Blob([new Uint8Array(ma._img.data)])
+              const blob = new Blob([new Uint8Array(ma.img.data)])
              
               const furl = URL.createObjectURL(blob)
               return(
@@ -120,7 +120,7 @@ _rank:""
                                         productname:details?.name
                                         ,about:details?.about
                                     }
-                                  const resp = await axios.post("https://food-cafe-cwmp4sxh5-khaleeds-projects-02dea468.vercel.app/auth/remove",payload)
+                                  const resp = await axios.post("http://localhost:1234/auth/remove",payload)
                                   setdis(resp.data.msg)
                                   setnot(true)
                                   getcart()
