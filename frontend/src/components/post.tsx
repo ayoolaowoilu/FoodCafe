@@ -17,7 +17,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("http://localhost:1234/auth/data",{
+            const resp = await axios.get("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/data",{
                 headers :{ authorization :`bearer ${token}`}
             })
            setdata(resp.data[0])
@@ -52,7 +52,7 @@ _rank:""
               setdis("")
 
             try {
-                const resp = await axios.post("http://localhost:1234/auth/post",formdata)
+                const resp = await axios.post("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/post",formdata)
                 setnot(true)
                 setdis(resp.data.msg)
                 setTimeout(() => {

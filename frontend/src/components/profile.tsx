@@ -29,7 +29,7 @@ _rank:""
         const mycart = cart.filter(cc => cc.username === data?.username)
     const getcart = async() =>{
         try {
-            const resp = await axios.get("http://localhost:1234/auth/getcart")
+            const resp = await axios.get("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/getcart")
             setcart(resp.data)
         } catch (err) {
             
@@ -40,7 +40,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("http://localhost:1234/auth/data",{
+            const resp = await axios.get("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/data",{
                 headers :{ authorization :`bearer ${token}`}
             })
            setdata(resp.data[0])
@@ -157,7 +157,7 @@ _rank:""
                                 formdata.append("file",file)
                                 formdata.append("username",username)
                             }
-                            const resp  =  await axios.post("http://localhost:1234/auth/update",formdata)
+                            const resp  =  await axios.post("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/update",formdata)
                             setnot(true)
                             setdis(resp.data.msg)
                             setTimeout(() => {

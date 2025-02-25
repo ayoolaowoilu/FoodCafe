@@ -20,7 +20,7 @@ export default function Reg(){
             setmsg("")
             setnot(false)
           try {
-            const resp = await axios.post("http://localhost:1234/auth/reg",profile)
+            const resp = await axios.post("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/reg",profile)
              setnot(true)
              setmsg(resp.data.msg)
           } catch (err) {
