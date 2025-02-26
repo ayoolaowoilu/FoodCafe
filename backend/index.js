@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
     cors({
-      origin: "https://food-cafe-homeoffoods.netlify.app", 
+      origin: "*", 
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
     })
   );
