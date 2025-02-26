@@ -16,7 +16,7 @@ export default function Login(){
            setmsg("")
             setnot(false)
            try {
-              const resp  = await axios.post("https://food-cafe-hfd09w34u-khaleeds-projects-02dea468.vercel.app/auth/login",profile)
+              const resp  = await axios.post("https://food-cafe-etf9podiw-khaleeds-projects-02dea468.vercel.app/auth/login",profile)
               setnot(true)
               setmsg(resp.data.msg)
               console.log(resp)
