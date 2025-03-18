@@ -24,7 +24,7 @@ _rank:""
     const [sta,setsta] = useState<Boolean>(false)
     const getcart = async() =>{
    try {
-       const resp = await axios.get("http://localhost:1234/auth/getcart")
+       const resp = await axios.get("https://foodcafe-am3k.onrender.com/auth/getcart")
        console.log(resp, "This is the response gotten from the cart")
        setcart(Array.isArray(resp?.data) ?  resp?.data : [])
    } catch (err) {
@@ -38,7 +38,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("http://localhost:1234/auth/data",{
+            const resp = await axios.get("https://foodcafe-am3k.onrender.com/auth/data",{
                 headers :{ authorization :`bearer ${token}`}
             })
            setdata(resp.data[0])
@@ -121,7 +121,7 @@ _rank:""
                                         productname:details?.name
                                         ,about:details?.about
                                     }
-                                  const resp = await axios.post("http://localhost:1234/auth/remove",payload)
+                                  const resp = await axios.post("https://foodcafe-am3k.onrender.com/auth/remove",payload)
                                   setdis(resp.data.msg)
                                   setnot(true)
                                   getcart()

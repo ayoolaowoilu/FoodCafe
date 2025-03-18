@@ -16,7 +16,7 @@ export default function Login(){
            setmsg("")
             setnot(false)
            try {
-              const resp  = await axios.post("http://localhost:1234/auth/login",profile)
+              const resp  = await axios.post("https://foodcafe-am3k.onrender.com/auth/login",profile)
               setnot(true)
               setmsg(resp.data.msg)
               console.log(resp)

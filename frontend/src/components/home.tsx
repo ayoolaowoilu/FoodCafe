@@ -17,7 +17,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("http://localhost:1234/auth/data",{
+            const resp = await axios.get("https://foodcafe-am3k.onrender.com/auth/data",{
                 headers :{ authorization :`bearer ${token}`}
             })
            setdata(resp.data[0])
@@ -103,7 +103,7 @@ _rank:""
                                  fd.append("about",details.about)
                               }
                               try {
-                                  const resp = await axios.post("http://localhost:1234/auth/cart",fd)
+                                  const resp = await axios.post("https://foodcafe-am3k.onrender.com/auth/cart",fd)
                                   setnot(true)
                                   setdis(resp.data.msg)
                                   setTimeout(() => {
@@ -133,7 +133,7 @@ _rank:""
      }
      const getpostdata =async()=>{
        try {
-         const resp = await axios.get("http://localhost:1234/auth/posts")
+         const resp = await axios.get("https://foodcafe-am3k.onrender.com/auth/posts")
         setpost(resp.data)
       
        } catch (err) {
