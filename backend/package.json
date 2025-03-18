@@ -4,7 +4,8 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "install":"npm install bcryptjs cors dotenv express jsonwebtoken multer mysql2 nodemon "
   },
   "keywords": [],
   "author": "",

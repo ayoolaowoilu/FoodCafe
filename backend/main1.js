@@ -4,15 +4,13 @@ import bcrypt  from "bcryptjs"
 import dotenv  from "dotenv"
 import mysql  from "mysql2/promise"
 import multer  from "multer"
-import fs  from "node:fs"
 dotenv.config()
 const router = express.Router()
 const db = await mysql.createConnection({
     host:process.env.HOST,
     user:process.env.USER,
     password:process.env.PASSWORD,
-    database:process.env.DATABASE,
-    port:process.env.PORT
+    database:process.env.DATABASE
 })
 if(db){
     console.log("Database connected ")
