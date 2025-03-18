@@ -40,7 +40,7 @@ _rank:""
      const getdata = async() =>{
         const token  = localStorage.getItem("token")
          try {
-            const resp = await axios.get("https://foodcafe-am3k.onrender.comauth/data", {
+            const resp = await axios.get("https://foodcafe-am3k.onrender.com/auth/data", {
                 headers: {
                     authorization :`bearer ${token}`
                 }
